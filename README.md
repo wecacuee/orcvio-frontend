@@ -10,13 +10,13 @@ If that does not work, then download weights for darknet by following instructio
 
 3. Build the docker image
 
-  ``` shellsession
-  docker build -t orcvio .
-  ```
+    ``` shellsession
+    docker build -t orcvio .
+    ```
 
 4. Run the docker image
 
-  ``` shellsession
-  docker-compose up starmap_kp
-  ```
+    ``` shellsession
+    docker-compose up starmap_kp
+    ```
 
