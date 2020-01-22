@@ -14,7 +14,14 @@ If that does not work, then download weights for darknet by following instructio
     docker build -t orcvio .
     ```
 
-4. Run the docker image
+4. Build the catkin workspace
+
+    ```shellsession
+    docker-compose up build_ws
+    ```
+
+4. Run the keypoint extractor along with dependencies including roscore,
+   img_publisher, and darknet_ros:
 
     ``` shellsession
     docker-compose up starmap_kp
