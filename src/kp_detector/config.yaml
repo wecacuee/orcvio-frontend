@@ -1,0 +1,38 @@
+##publisher topics
+# kps_pub: publishes keypoints
+# hm_render: publishes 63*63 argmax(heatmap) for one object 
+# img_render: publishes img scale argmax(heatmaps) for all objects in this image
+kps_topic_0: "/kps_data_0"
+hm_topic_0: "/heatmaps_0"
+hm_img_topic_0: "/img_mask_0"
+vis_topic_0: "/vis_topic_0"
+
+kps_topic_1: "/kps_data_1"
+hm_topic_1: "/heatmaps_1"
+hm_img_topic_1: "/img_mask_1"
+vis_topic_1: "/vis_topic_1"
+
+##subscriber topics
+# image_src: this should match image publisher topic!
+# bbxes_src: this should match darknet_ros publisher topic!
+image_src_0: /image_raw_0
+bbxes_src_0: /darknet_ros/bounding_boxes_0
+
+image_src_1: /image_raw_1
+bbxes_src_1: /darknet_ros/bounding_boxes_1
+
+##network
+# frozen_name: the metadata for the net
+# input_node_str: input node name in graph
+# output_node_str: output node name in graph
+frozen_name: "frozen_nhwc.pb" #"../bonnet/train_py/cfg/pascal/f-logs/frozen_nhwc.pb"
+input_node_str: "x_pl:0"
+#output_node_str: "test_model/model/stage_1/out/conv/BiasAdd:0"
+output_node_str: "test_model/model/stage_1/out/conv/Conv2D:0"
+
+## program setting
+visualization: True
+
+## choose to save to local
+save_to_file: True
+save_path: "/home/meng/lab-mill/icra2018/baseline/Dataset/TUM/temp"

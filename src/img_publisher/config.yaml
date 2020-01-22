@@ -1,0 +1,85 @@
+## config file for img publisher
+
+img_topic_0: "/image_raw_0"
+img_topic_1: "/image_raw_1"
+
+enable_imu: True
+imu_topic: "/imu_data"
+
+
+kps_data_0: "/kps_data_0"
+kps_data_1: "/kps_data_1"
+
+img_topic_0_remap: "/image_raw_0_remap"
+img_topic_1_remap: "/image_raw_1_remap"
+#TODO this is hardcode
+kps_data_0_remap: "/kps_data_0_remap"
+kps_data_1_remap: "/kps_data_1_remap"
+
+crop_length: 200
+
+# publishing frequency
+hz: 0.5
+
+# preproc for resize
+preproc: False
+pre_width: 600
+pre_height: 480
+
+# the number of images at most published, then need to reset 
+pub_img_max: 10000
+
+# 1. each cam should read from a directory indicated by `dir_path` 
+# 2. if has a file_list
+#        1. define the list_file path in `list_path`
+#        2. choose the parser rules in `parser_mode`
+#    else
+#        just include all files in `dir_path`
+
+#dir_path: tell where those images lies
+
+#################
+#     KITTI     #
+#################
+
+#### KITTI odometry seq07 ####
+dir_path_0: "/home/vdhiman/aux/orcvio/src/yolokey/data/2011_10_03/2011_10_03_drive_0027_sync/image_00/data/"
+dir_path_1: "/home/vdhiman/aux/orcvio/src/yolokey/data/2011_10_03/2011_10_03_drive_0027_sync/image_01/data/"
+dir_path_imu: "/home/vdhiman/aux/orcvio/src/yolokey/data/2011_10_03/2011_10_03_drive_0027_sync/oxts/data/"
+imu_stamp_file: "/home/vdhiman/aux/orcvio/src/yolokey/data/2011_10_03/2011_10_03_drive_0027_sync/oxts/timestamps.txt"
+
+#### KITTI rawdata RGB 18(associated with odometry seq05)####
+#dir_path_0: "/home/meng/lab-mill/icra2018/baseline/Dataset/KITTI/2011_09_30/2011_09_30_drive_0018_sync/image_02/data/"
+#dir_path_1: "/home/meng/lab-mill/icra2018/baseline/Dataset/KITTI/2011_09_30/2011_09_30_drive_0018_sync/image_03/data/" 
+#dir_path_imu: "/home/meng/lab-mill/icra2018/baseline/Dataset/KITTI/2011_09_30/2011_09_30_drive_0018_sync/oxts/data/"
+#imu_stamp_file: "/home/meng/lab-mill/icra2018/baseline/Dataset/KITTI/2011_09_30/2011_09_30_drive_0018_sync/oxts/timestamps.txt"
+
+#### KITTI rawdata RGB 20(associated with odometry seq06)####
+# dir_path_0: "/home/meng/lab-mill/icra2018/baseline/Dataset/KITTI/2011_09_30/2011_09_30_drive_0020_sync/image_02/data/"
+# dir_path_1: "/home/meng/lab-mill/icra2018/baseline/Dataset/KITTI/2011_09_30/2011_09_30_drive_0020_sync/image_03/data/" 
+# dir_path_imu: "/home/meng/lab-mill/icra2018/baseline/Dataset/KITTI/2011_09_30/2011_09_30_drive_0020_sync/oxts/data/"
+# imu_stamp_file: "/home/meng/lab-mill/icra2018/baseline/Dataset/KITTI/2011_09_30/2011_09_30_drive_0020_sync/oxts/timestamps.txt"
+
+#### KITTI rawdata RGB 95####
+#dir_path_0: "/home/meng/lab-mill/icra2018/baseline/Dataset/KITTI/2011_09_26/2011_09_26_drive_0095_sync/image_02/data/"
+#dir_path_1: "/home/meng/lab-mill/icra2018/baseline/Dataset/KITTI/2011_09_26/2011_09_26_drive_0095_sync/image_03/data/" 
+#dir_path_imu: "/home/meng/lab-mill/icra2018/baseline/Dataset/KITTI/2011_09_26/2011_09_26_drive_0095_sync/oxts/data/"
+#imu_stamp_file: "/home/meng/lab-mill/icra2018/baseline/Dataset/KITTI/2011_09_26/2011_09_26_drive_0095_sync/oxts/timestamps.txt"
+
+#### TUM office_household (RGBD setting)####
+#dir_path_0: "/home/meng/lab-mill/icra2018/baseline/Dataset/TUM/rgbd_dataset_freiburg3_long_office_household/rgb/"
+#dir_path_1: "/home/meng/lab-mill/icra2018/baseline/Dataset/TUM/rgbd_dataset_freiburg3_long_office_household/rgb/"
+
+#dir_path: "/home/meng/workshop/src/tum-dataset/rgbd_dataset_freiburg2_pioneer_slam/"
+#dir_path: "/home/meng/workshop/src/tum-dataset/rgbd_dataset_freiburg1_xyz/"
+#dir_path: "/home/meng/workshop/src/tum-dataset/sim_data_2b1cs/"
+
+list_path_0: ""
+list_path_1: ""
+#list_path: "/home/meng/workshop/src/tum-dataset/rgbd_dataset_freiburg2_pioneer_slam/rgb.txt"
+#list_path: "/home/meng/workshop/src/tum-dataset/rgbd_dataset_freiburg1_xyz/rgb.txt"
+#list_path: "/home/meng/workshop/src/tum-dataset/sim_data_2b1cs/rgb.txt"
+
+parser_mode: "tum"  # "time file_path" in each line, # for comment
+#parser_mode: "plain" # just "file_path" in each line, # for comment
+

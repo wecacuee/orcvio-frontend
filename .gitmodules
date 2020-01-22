@@ -1,0 +1,21 @@
+[submodule "src/bonnetal"]
+	path = src/bonnetal
+	url = https://github.com/PRBonn/bonnetal.git
+[submodule "src/darknet_ros"]
+	path = src/darknet_ros
+	url = https://github.com/wecacuee/darknet_ros.git
+[submodule "src/StarMap"]
+	path = src/StarMap
+	url = https://github.com/wecacuee/StarMap.git
+[submodule "src/vision_opencv"]
+	path = src/vision_opencv
+	url = https://github.com/ros-perception/vision_opencv.git
+[submodule "src/orcvio_gamma"]
+	path = src/orcvio_gamma
+	url = git@bitbucket.org:moshan_uscd/orcvio_gamma.git
+[submodule "src/orcvio_pytorch_models"]
+	path = src/orcvio_pytorch_models
+	url = git@github.com:moshanATucsd/orcvio_pytorch_models.git
+[submodule "src/orcvio-cpp"]
+	path = src/orcvio-cpp
+	url = git@github.com:ExistentialRobotics/orcvio-cpp.git

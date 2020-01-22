@@ -1,0 +1,75 @@
+version: '2.4'
+services:
+  build_ws: # Builds the catkin workspace 
+    image: orcvio
+    volumes:
+      - ./:/home/root/orcvio
+    command: ["/bin/bash", "-c", "cd /home/root/orcvio/ && catkin config --cmake-args -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.6m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.6m.so && catkin build"]
+
+  roscore: # Starts the roscore service
+    image: orcvio
+    network_mode: "host"
+    command: roscore
+    environment:
+      HOME: ${HOME}
+    volumes:
+      - $HOME:$HOME
+    working_dir: $PWD
+
+
+  img_publisher: # Publishes images from KITTI dataset
+    depends_on:
+      - roscore
+      - build_ws
+    network_mode: "host"
+    image: orcvio
+    volumes:
+      - $PWD:/home/root/orcvio
+      - /home/vdhiman/aux/orcvio/src/yolokey/data:/home/vdhiman/aux/orcvio/src/yolokey/data
+    command: ["/bin/bash", "-c", "source /home/root/orcvio/devel/setup.bash && rosrun img_publisher publisher.py"]
+
+  darknet_ros_0: # Runs YOLO detector from darknet ros
+    runtime: nvidia
+    image: orcvio
+    depends_on:
+      - roscore
+      - img_publisher
+      - build_ws
+    network_mode: "host"
+    volumes:
+      - $PWD:/home/root/orcvio
+      - $HOME:$HOME
+    working_dir: $PWD
+    environment:
+      - HOME=$HOME
+    command: ["/bin/bash", "-c", "source /home/root/orcvio/devel/setup.bash && roslaunch darknet_ros darknet_ros.launch image:=/image_raw_0 bounding_boxes:=/darknet_ros/bounding_boxes_0"]
+      
+  darknet_ros_1: # Runs YOLO detector from darknet ros
+    runtime: nvidia
+    image: orcvio
+    depends_on:
+      - roscore
+      - img_publisher
+      - build_ws
+    network_mode: "host"
+    volumes:
+      - $PWD:/home/root/orcvio
+      - $HOME:$HOME
+    working_dir: $PWD
+    environment:
+      - HOME=$HOME
+    command: ["/bin/bash", "-c", "source /home/root/orcvio/devel/setup.bash && roslaunch darknet_ros darknet_ros.launch node_name:=darknet_ros_1 image:=/image_raw_1 bounding_boxes:=/darknet_ros/bounding_boxes_1"]
+
+
+  starmap_kp:
+    runtime: nvidia
+    image: orcvio
+    depends_on:
+      - roscore
+      - img_publisher
+      - build_ws
+      - darknet_ros_0
+    network_mode: "host"
+    volumes:
+      - $PWD:/home/root/orcvio
+    command: ["/bin/bash", "-c", "source /home/root/orcvio/devel/setup.bash && rosrun kp_detector detector.py"]
