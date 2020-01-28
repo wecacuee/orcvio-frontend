@@ -25,8 +25,20 @@ RUN apt-get update && \
 
 RUN pip3 install --no-cache catkin-tools rospkg rosdistro opencv-python matplotlib tensorflow==1.6 empy
 
+RUN mkdir -p /home/root/opencv_build && \
+    cd /home/root/opencv_build && \
+    git clone --branch 3.4.6 https://github.com/opencv/opencv/ && \
+    git clone --branch 3.4.6 https://github.com/opencv/opencv_contrib/ && \
+    mkdir opencv/build/ && \
+    cd opencv/build/ && \
+    cmake -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules .. && \
+    make -j && \
+    make install && \
+    cd && rm -rf /home/root/opencv_build
+
 RUN mkdir -p /home/root/catkin_ws/src && cd /home/root/catkin_ws && \
     git clone https://github.com/ros-perception/vision_opencv.git src/vision_opencv && \
+    git clone https://github.com/rpng/open_vins/ src/open_vins && \
     . /opt/ros/melodic/setup.sh && \
     catkin config -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.6m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.6m.so && \
     catkin build
