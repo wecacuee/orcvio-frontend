@@ -1,0 +1,7 @@
+catkin-tools
+rospkg
+rosdistro
+opencv-python
+matplotlib
+tensorflow-gpu==1.14.0
+empy

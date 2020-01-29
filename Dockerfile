@@ -3,45 +3,20 @@ FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04 AS cuda
 ENV TZ=America/Los_Angeles
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN echo "deb http://packages.ros.org/ros/ubuntu bionic main" > /etc/apt/sources.list.d/ros-latest.list
-RUN apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+COPY install-deps/install-apt-get-packages.sh /tmp/
+RUN sh /tmp/install-apt-get-packages.sh
 
-RUN apt-get update && \
-    apt-get -y install python3-pip git \
-                       ros-melodic-tf-conversions \
-                       ros-melodic-random-numbers \
-                       libsuitesparse-dev \
-                       ros-melodic-pluginlib \
-                       ros-melodic-opencv-apps \
-                       ros-melodic-pcl-conversions \
-                       ros-melodic-rviz \
-                      ros-melodic-ros-base \
-                      ros-melodic-eigen-conversions \
-                      ros-melodic-pcl-ros \
-                       libsm-dev \
-                       libxrender-dev \
-    && \
-    rm -rf /var/lib/apt/lists/*
+COPY install-deps/pip-requirements.txt /tmp/
+RUN pip3 install --no-cache -r /tmp/pip-requirements.txt
 
-RUN pip3 install --no-cache catkin-tools rospkg rosdistro opencv-python matplotlib tensorflow==1.6 empy
+COPY install-deps/install-opencv.sh /tmp/
+RUN CATKIN_WORKSPACE=/home/root/catkin_ws SUDO="" sh /tmp/install-opencv.sh
 
-RUN mkdir -p /home/root/opencv_build && \
-    cd /home/root/opencv_build && \
-    git clone --branch 3.4.6 https://github.com/opencv/opencv/ && \
-    git clone --branch 3.4.6 https://github.com/opencv/opencv_contrib/ && \
-    mkdir opencv/build/ && \
-    cd opencv/build/ && \
-    cmake -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules .. && \
-    make -j && \
-    make install && \
-    cd && rm -rf /home/root/opencv_build
+COPY install-deps/install-third-party-deps.sh /tmp/
+RUN CATKIN_WORKSPACE=/home/root/catkin_ws SUDO="" sh /tmp/install-third-party-deps.sh
 
-RUN mkdir -p /home/root/catkin_ws/src && cd /home/root/catkin_ws && \
-    git clone https://github.com/ros-perception/vision_opencv.git src/vision_opencv && \
-    git clone https://github.com/rpng/open_vins/ src/open_vins && \
-    . /opt/ros/melodic/setup.sh && \
-    catkin config -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.6m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.6m.so && \
-    catkin build
+COPY install-deps/install-libtorch.sh /tmp/
+RUN CATKIN_WORKSPACE=/home/root/catkin_ws SUDO="" sh /tmp/install-libtorch.sh
 
 # ROS Python 3 fix
 RUN sed -i -e 's/import itertools/import itertools\nfrom functools import reduce/' /opt/ros/melodic/lib/python2.7/dist-packages/message_filters/__init__.py

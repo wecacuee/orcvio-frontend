@@ -5,3 +5,4 @@ logs/
 old/
 src/img_publisher/imgs/
 src/kp_detector/frozen_nhwc.pb
+.tox

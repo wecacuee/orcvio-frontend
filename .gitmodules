@@ -19,3 +19,6 @@
 [submodule "src/orcvio-cpp"]
 	path = src/orcvio-cpp
 	url = git@github.com:ExistentialRobotics/orcvio-cpp.git
+[submodule "src/open_vins"]
+	path = src/open_vins
+	url = git@github.com:rpng/open_vins.git
