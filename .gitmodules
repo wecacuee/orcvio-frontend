@@ -22,3 +22,6 @@
 [submodule "src/open_vins"]
 	path = src/open_vins
 	url = git@github.com:rpng/open_vins.git
+[submodule "src/starmap"]
+	path = src/starmap
+	url = https://github.com/wecacuee/StarMap.git
