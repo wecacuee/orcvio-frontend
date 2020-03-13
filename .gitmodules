@@ -25,3 +25,9 @@
 [submodule "src/starmap"]
 	path = src/starmap
 	url = https://github.com/wecacuee/StarMap.git
+[submodule "src/StarMap-xingyizhou"]
+	path = src/StarMap-xingyizhou
+	url = git@github.com:wecacuee/StarMap.git
+[submodule "src/open_OrcVIO_cpp"]
+	path = src/open_OrcVIO_cpp
+	url = git@github.com:moshanATucsd/open_OrcVIO_cpp.git
