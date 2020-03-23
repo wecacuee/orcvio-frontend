@@ -1,8 +1,15 @@
 .catkin_tools/
 build/
 devel/
+install
+log/
 logs/
 old/
 src/img_publisher/imgs/
 src/kp_detector/frozen_nhwc.pb
 .tox
+.clang-format
+.gdb_history
+papers
+src/data
+nohup.out
