@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04 AS cuda
+FROM ros-melodic-bionic-nvidia
 
 ENV TZ=America/Los_Angeles
 ENV DEBIAN_FRONTEND=noninteractive
@@ -9,11 +9,11 @@ RUN sh /tmp/install-apt-get-packages.sh
 COPY install-deps/pip-requirements.txt /tmp/
 RUN pip3 install --no-cache -r /tmp/pip-requirements.txt
 
-COPY install-deps/install-opencv.sh /tmp/
-RUN CATKIN_WORKSPACE=/home/root/catkin_ws SUDO="" sh /tmp/install-opencv.sh
+COPY install-deps/install-opencv.mk /tmp/
+RUN CATKIN_WORKSPACE=/home/root/catkin_ws SUDO="" /tmp/install-opencv.mk
 
-COPY install-deps/install-third-party-deps.sh /tmp/
-RUN CATKIN_WORKSPACE=/home/root/catkin_ws SUDO="" sh /tmp/install-third-party-deps.sh
+COPY install-deps/clone-deps-and-catkin-build.sh /tmp/
+RUN CATKIN_WORKSPACE=/home/root/catkin_ws SUDO="" sh /tmp/clone-deps-and-catkin-build.sh
 
 COPY install-deps/install-libtorch.sh /tmp/
 RUN CATKIN_WORKSPACE=/home/root/catkin_ws SUDO="" sh /tmp/install-libtorch.sh

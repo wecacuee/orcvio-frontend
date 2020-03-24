@@ -16,5 +16,6 @@ apt-get update && \
             libsm-dev \
             libxrender-dev \
             rsync \
+            unzip \
     && \
     rm -rf /var/lib/apt/lists/*
