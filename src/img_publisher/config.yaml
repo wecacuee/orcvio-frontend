@@ -19,7 +19,7 @@ kps_data_1_remap: "/kps_data_1_remap"
 crop_length: 200
 
 # publishing frequency
-hz: 0.5
+hz: 10
 
 # preproc for resize
 preproc: False
