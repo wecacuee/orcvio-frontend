@@ -5,3 +5,5 @@ opencv-python
 matplotlib
 tensorflow-gpu
 empy
+pycryptodomex
+gnupg
