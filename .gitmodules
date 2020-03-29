@@ -34,3 +34,6 @@
 [submodule "src/sort_ros"]
 	path = src/sort_ros
 	url = git@github.com:moshanATucsd/sort_ros.git
+[submodule "src/starmap_ros_msgs"]
+	path = src/starmap_ros_msgs
+	url = git@github.com:wecacuee/starmap_ros_msgs.git
