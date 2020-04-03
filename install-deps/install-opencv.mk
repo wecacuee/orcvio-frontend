@@ -4,7 +4,7 @@ ROOT_DIR?=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 OPENCV_VERSION?=3.4.9
 INSTALL_PREFIX?=$(CATKIN_WORKSPACE)/devel/
-SOURCE_PREFIX?=$(HOME)/.src/
+SOURCE_PREFIX?=$(HOME)/.local/src/
 
 OPENCV_CONTRIB_DIR?=$(SOURCE_PREFIX)/opencv_contrib-$(OPENCV_VERSION)
 

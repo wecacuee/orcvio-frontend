@@ -2,9 +2,9 @@
 SHELL=/bin/bash -l
 ROOT_DIR?=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
-SOPHUS_VERSION?=3.4.9
+SOPHUS_VERSION?=v1.0.0
 INSTALL_PREFIX?=$(CATKIN_WORKSPACE)/devel/
-SOURCE_PREFIX?=$(HOME)/.src/
+SOURCE_PREFIX?=$(HOME)/.local/src/
 
 SOPHUS_DIR?=$(SOURCE_PREFIX)/sophus-$(SOPHUS_VERSION)
 SOPHUS_INSTALL_DIR?=$(INSTALL_PREFIX)/stow/sophus-$(SOPHUS_VERSION)
@@ -33,6 +33,7 @@ $(SOPHUS_DIR)/.sys-dependencies: #$(if $(isflux), ,$(CUDA_INSTALLED))
 
 $(SOPHUS_DIR)/CMakeLists.txt:
 	-mkdir $(dir $(SOPHUS_DIR))
-	git clone --branch v1.0.0 https://github.com/strasdat/Sophus.git $(@D)
+	git clone  https://github.com/strasdat/Sophus.git $(@D)
+	cd $(@D) && git checkout $(SOPHUS_VERSION)
 	touch $@
 
