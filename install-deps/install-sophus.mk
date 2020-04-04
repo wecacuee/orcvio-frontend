@@ -3,18 +3,18 @@ SHELL=/bin/bash -l
 ROOT_DIR?=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 SOPHUS_VERSION?=v1.0.0
-INSTALL_PREFIX?=$(CATKIN_WORKSPACE)/devel/
 SOURCE_PREFIX?=$(HOME)/.local/src/
+STOW_PREFIX?=$(SOURCE_PREFIX)/stow
 
 SOPHUS_DIR?=$(SOURCE_PREFIX)/sophus-$(SOPHUS_VERSION)
-SOPHUS_INSTALL_DIR?=$(INSTALL_PREFIX)/stow/sophus-$(SOPHUS_VERSION)
+SOPHUS_INSTALL_DIR?=$(STOW_PREFIX)/sophus-$(SOPHUS_VERSION)
 SOPHUS_INSTALLED?=$(SOPHUS_INSTALL_DIR)/lib/libSophus.so
 SOPHUS_STOWED?=$(INSTALL_PREFIX)/lib/libSophus.so
 
 sophus: $(SOPHUS_STOWED)
 
 $(SOPHUS_STOWED): $(SOPHUS_INSTALLED)
-	cd $(dir $(SOPHUS_INSTALL_DIR)) && stow sophus-$(SOPHUS_VERSION)
+	stow --dir=$(STOW_PREFIX) --target=$(INSTALL_PREFIX) sophus-$(SOPHUS_VERSION)
 
 $(SOPHUS_INSTALLED): $(SOPHUS_DIR)/CMakeLists.txt \
                      $(SOPHUS_DIR)/.sys-dependencies

@@ -1,0 +1,5 @@
+- git:
+    local-name: ros_comm/rosbag
+    uri: https://github.com/ros-gbp/ros_comm-release.git
+    version: release/melodic/rosbag/1.14.5-1
+

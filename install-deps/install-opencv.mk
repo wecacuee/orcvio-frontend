@@ -3,20 +3,20 @@ SHELL=/bin/bash -l
 ROOT_DIR?=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 OPENCV_VERSION?=3.4.9
-INSTALL_PREFIX?=$(CATKIN_WORKSPACE)/devel/
 SOURCE_PREFIX?=$(HOME)/.local/src/
+STOW_PREFIX?=$(SOURCE_PREFIX)/stow
 
 OPENCV_CONTRIB_DIR?=$(SOURCE_PREFIX)/opencv_contrib-$(OPENCV_VERSION)
 
 OPENCV_DIR?=$(SOURCE_PREFIX)/opencv-$(OPENCV_VERSION)
-OPENCV_INSTALL_DIR?=$(INSTALL_PREFIX)/stow/opencv-$(OPENCV_VERSION)
+OPENCV_INSTALL_DIR?=$(STOW_PREFIX)/opencv-$(OPENCV_VERSION)
 OPENCV_INSTALLED?=$(OPENCV_INSTALL_DIR)/lib/libopencv_core.so
 OPENCV_STOWED?=$(INSTALL_PREFIX)/lib/libopencv_core.so
 
 opencv: $(OPENCV_STOWED)
 
 $(OPENCV_STOWED): $(OPENCV_INSTALLED)
-	cd $(dir $(OPENCV_INSTALL_DIR)) && stow opencv-$(OPENCV_VERSION)
+	stow --dir=$(dir $(OPENCV_INSTALL_DIR)) --target=$(INSTALL_PREFIX) opencv-$(OPENCV_VERSION)
 
 $(OPENCV_INSTALLED): $(OPENCV_DIR)/CMakeLists.txt \
 					 $(OPENCV_CONTRIB_DIR)/CMakeLists.txt \
@@ -26,7 +26,7 @@ $(OPENCV_INSTALLED): $(OPENCV_DIR)/CMakeLists.txt \
 		&& . $(OPENCV_DIR)/.sys-dependencies \
 		&& cmake .. -DCMAKE_INSTALL_PREFIX=$(OPENCV_INSTALL_DIR) \
 			 -DCUDA_GENERATION=Auto \
-	         -DOPENCV_EXTRA_MODULES_PATH=$(OPENCV_CONTRIB_DIR) \
+	         -DOPENCV_EXTRA_MODULES_PATH=$(OPENCV_CONTRIB_DIR)/modules \
 	   && $(MAKE) -C $(dir $<)/build install
 
 $(OPENCV_DIR)/CMakeLists.txt: $(SOURCE_PREFIX)/opencv-$(OPENCV_VERSION).zip

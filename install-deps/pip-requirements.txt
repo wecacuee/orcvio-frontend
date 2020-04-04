@@ -1,6 +1,7 @@
 catkin-tools
 rospkg
 rosdistro
+rosinstall
 opencv-python
 matplotlib
 tensorflow-gpu
