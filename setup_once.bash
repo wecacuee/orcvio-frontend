@@ -1,7 +1,5 @@
 sudo sh install-deps/install-apt-get-packages.sh
 
-pip3 install --no-cache -r install-deps/pip-requirements.txt
-
 {
     export CATKIN_WORKSPACE=$(pwd)
     export INSTALL_PREFIX=${CATKIN_WORKSPACE}/devel
@@ -10,8 +8,6 @@ pip3 install --no-cache -r install-deps/pip-requirements.txt
         make -f install-deps/install-opencv.mk
     [ -d $INSTALL_PREFIX/lib/libtorch.so ] || \
         sh install-deps/install-libtorch.sh
-    [ -d $CATKIN_WORKSPACE/src/vision_opencv ] || \
-        sh install-deps/clone-deps-and-catkin-build.sh
     [ -f $INSTALL_PREFIX/include/gsl-lite/gsl-lite.hpp ] || \
         sh install-deps/install-gsl.sh
     [ -f $CATKIN_WORKSPACE/src/darknet_ros/darknet_ros/yolo_network_config/weights/yolov2.weights ] || \
@@ -22,5 +18,15 @@ pip3 install --no-cache -r install-deps/pip-requirements.txt
         make -f install-deps/install-catkin-simple.mk
 }
 
+virtualenv --python=python3.6 .tox/py36
+source .tox/py36/bin/activate
+pip3 install --no-cache -r install-deps/pip-requirements.txt
+{
+    export CATKIN_WORKSPACE=$(pwd)
+    [ -d $CATKIN_WORKSPACE/src/vision_opencv ] || \
+        sh install-deps/clone-deps-and-catkin-build.sh
+
+}
+catkin build --extend /opt/ros/melodic/setup.bash
 source setup.bash
 
