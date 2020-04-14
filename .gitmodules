@@ -37,3 +37,6 @@
 [submodule "src/starmap_ros_msgs"]
 	path = src/starmap_ros_msgs
 	url = git@github.com:wecacuee/starmap_ros_msgs.git
+[submodule "src/orcvio_python_clean"]
+	path = src/orcvio_python_clean
+	url = git@github.com:moshanATucsd/orcvio_python_clean.git
