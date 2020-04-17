@@ -1,9 +1,6 @@
 [submodule "src/bonnetal"]
 	path = src/bonnetal
 	url = https://github.com/PRBonn/bonnetal.git
-[submodule "src/darknet_ros"]
-	path = src/darknet_ros
-	url = https://github.com/wecacuee/darknet_ros.git
 [submodule "src/StarMap"]
 	path = src/StarMap
 	url = https://github.com/wecacuee/StarMap.git
@@ -28,9 +25,6 @@
 [submodule "src/StarMap-xingyizhou"]
 	path = src/StarMap-xingyizhou
 	url = git@github.com:wecacuee/StarMap.git
-[submodule "src/open_OrcVIO_cpp"]
-	path = src/open_OrcVIO_cpp
-	url = git@github.com:moshanATucsd/open_OrcVIO_cpp.git
 [submodule "src/sort_ros"]
 	path = src/sort_ros
 	url = git@github.com:moshanATucsd/sort_ros.git
