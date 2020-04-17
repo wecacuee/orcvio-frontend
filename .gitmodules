@@ -40,3 +40,6 @@
 [submodule "src/orcvio_python_clean"]
 	path = src/orcvio_python_clean
 	url = git@github.com:moshanATucsd/orcvio_python_clean.git
+[submodule "src/backend"]
+	path = src/backend
+	url = git@github.com:wecacuee/orcvio-backend.git
