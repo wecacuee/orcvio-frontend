@@ -7,15 +7,9 @@
 [submodule "src/vision_opencv"]
 	path = src/vision_opencv
 	url = https://github.com/ros-perception/vision_opencv.git
-[submodule "src/orcvio_gamma"]
-	path = src/orcvio_gamma
-	url = git@bitbucket.org:moshan_uscd/orcvio_gamma.git
 [submodule "src/orcvio_pytorch_models"]
 	path = src/orcvio_pytorch_models
 	url = git@github.com:moshanATucsd/orcvio_pytorch_models.git
-[submodule "src/orcvio-cpp"]
-	path = src/orcvio-cpp
-	url = git@github.com:ExistentialRobotics/orcvio-cpp.git
 [submodule "src/open_vins"]
 	path = src/open_vins
 	url = git@github.com:rpng/open_vins.git
