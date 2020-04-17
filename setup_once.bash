@@ -10,7 +10,7 @@ sudo sh install-deps/install-apt-get-packages.sh
         sh install-deps/install-libtorch.sh
     [ -f $INSTALL_PREFIX/include/gsl-lite/gsl-lite.hpp ] || \
         sh install-deps/install-gsl.sh
-    [ -f $CATKIN_WORKSPACE/src/darknet_ros/darknet_ros/yolo_network_config/weights/yolov2.weights ] || \
+    [ -f $CATKIN_WORKSPACE/src/backend/src/darknet_ros/darknet_ros/yolo_network_config/weights/yolov2.weights ] || \
         sh install-deps/download-yolo-weights.sh
     [ -f $INSTALL_PREFIX/include/sophus/se3.hpp ] || \
         make -f install-deps/install-sophus.mk
@@ -27,6 +27,7 @@ pip3 install --no-cache -r install-deps/pip-requirements.txt
         sh install-deps/clone-deps-and-catkin-build.sh
 
 }
-catkin build --extend /opt/ros/melodic/setup.bash
+catkin config --extend /opt/ros/melodic/setup.bash
+catkin build
 source setup.bash
 

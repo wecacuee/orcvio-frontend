@@ -1,6 +1,6 @@
 # Download weights
 {
-    cd ${CATKIN_WORKSPACE}/src/darknet_ros/darknet_ros/yolo_network_config/weights/
+    cd ${CATKIN_WORKSPACE}/src/backend/src/darknet_ros/darknet_ros/yolo_network_config/weights/
     [ -f yolov2.weights ] || \
         curl -OJL http://pjreddie.com/media/files/yolov2.weights
     [ -f yolov2-tiny.weights ] || \
