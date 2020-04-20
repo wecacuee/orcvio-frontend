@@ -17,5 +17,7 @@ apt-get update && \
             libxrender-dev \
             rsync \
             unzip \
+            stow \
+            libeigen3-dev \
     && \
     rm -rf /var/lib/apt/lists/*

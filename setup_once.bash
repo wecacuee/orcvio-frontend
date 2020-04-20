@@ -4,8 +4,8 @@ sudo sh install-deps/install-apt-get-packages.sh
     export CATKIN_WORKSPACE=$(pwd)
     export INSTALL_PREFIX=${CATKIN_WORKSPACE}/devel
     export SUDO=sudo
-    [ -d $INSTALL_PREFIX/share/OpenCV/ ] || \
-        make -f install-deps/install-opencv.mk
+    #[ -d $INSTALL_PREFIX/share/OpenCV/ ] || \
+    #    make -f install-deps/install-opencv.mk
     [ -d $INSTALL_PREFIX/lib/libtorch.so ] || \
         sh install-deps/install-libtorch.sh
     [ -f $INSTALL_PREFIX/include/gsl-lite/gsl-lite.hpp ] || \
