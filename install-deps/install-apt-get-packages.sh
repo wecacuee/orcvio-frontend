@@ -7,12 +7,13 @@ apt-get update && \
             ros-melodic-random-numbers \
             libsuitesparse-dev \
             ros-melodic-pluginlib \
-            ros-melodic-opencv-apps \
             ros-melodic-pcl-conversions \
             ros-melodic-rviz \
             ros-melodic-ros-base \
             ros-melodic-eigen-conversions \
             ros-melodic-pcl-ros \
+            ros-melodic-tf2-geometry-msgs \
+            ros-melodic-camera-info-manager \
             libsm-dev \
             libxrender-dev \
             rsync \
