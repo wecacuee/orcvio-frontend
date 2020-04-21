@@ -1,6 +1,7 @@
 DIR=$(dirname $(readlink -m ${BASH_SOURCE[0]}))
 #source /opt/ros/melodic/setup.bash
 source $DIR/devel/setup.bash
+export CMAKE_PREFIX_PATH=${HOME}/aux/orcvio-frontend/devel:$CMAKE_PREFIX_PATH
 
 export PYTHONPATH=$PYTHONPATH:/opt/ros/melodic/lib/python2.7/dist-packages
 #export PYTHONPATH=/usr/lib/python3/dist-packages/:$PYTHONPATH

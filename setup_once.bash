@@ -1,9 +1,13 @@
-sudo sh install-deps/install-apt-get-packages.sh
+#sudo sh install-deps/install-apt-get-packages.sh
 
 {
     export CATKIN_WORKSPACE=$(pwd)
-    export INSTALL_PREFIX=${CATKIN_WORKSPACE}/devel
+    export INSTALL_PREFIX=${HOME}/aux/orcvio-frontend/devel
+    export CMAKE_PREFIX_PATH=${HOME}/aux/orcvio-frontend/devel
     export SUDO=sudo
+    mkdir -p $INSTALL_PREFIX
+    [ -d $INSTALL_PREFIX/share/OpenCV/OpenCVConfig.cmake ] || \
+        make -f install-deps/install-opencv.mk
     [ -d $INSTALL_PREFIX/lib/libtorch.so ] || \
         sh install-deps/install-libtorch.sh
     [ -f $CATKIN_WORKSPACE/src/backend/src/darknet_ros/darknet_ros/yolo_network_config/weights/yolov2.weights ] || \
@@ -23,7 +27,8 @@ pip3 install --no-cache -r install-deps/pip-requirements.txt
         sh install-deps/clone-deps-and-catkin-build.sh
 
 }
-catkin config --extend /opt/ros/melodic/setup.bash
+catkin config --extend /opt/ros/melodic/
+source setup.bash
 catkin build
 source setup.bash
 
