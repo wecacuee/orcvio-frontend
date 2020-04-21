@@ -4,12 +4,8 @@ sudo sh install-deps/install-apt-get-packages.sh
     export CATKIN_WORKSPACE=$(pwd)
     export INSTALL_PREFIX=${CATKIN_WORKSPACE}/devel
     export SUDO=sudo
-    #[ -d $INSTALL_PREFIX/share/OpenCV/ ] || \
-    #    make -f install-deps/install-opencv.mk
     [ -d $INSTALL_PREFIX/lib/libtorch.so ] || \
         sh install-deps/install-libtorch.sh
-    [ -f $INSTALL_PREFIX/include/gsl-lite/gsl-lite.hpp ] || \
-        sh install-deps/install-gsl.sh
     [ -f $CATKIN_WORKSPACE/src/backend/src/darknet_ros/darknet_ros/yolo_network_config/weights/yolov2.weights ] || \
         sh install-deps/download-yolo-weights.sh
     [ -f $INSTALL_PREFIX/include/sophus/se3.hpp ] || \
