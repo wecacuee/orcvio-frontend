@@ -1,9 +1,6 @@
 [submodule "src/bonnetal"]
 	path = src/bonnetal
 	url = https://github.com/PRBonn/bonnetal.git
-[submodule "src/StarMap"]
-	path = src/StarMap
-	url = https://github.com/wecacuee/StarMap.git
 [submodule "src/vision_opencv"]
 	path = src/vision_opencv
 	url = https://github.com/ros-perception/vision_opencv.git
