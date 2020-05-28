@@ -13,3 +13,8 @@ src/kp_detector/frozen_nhwc.pb
 papers
 src/data
 nohup.out
+src/.rosinstall
+src/image_pipeline/
+src/ros_comm/
+src/orcvio_1car_for_unittest
+src/orcvio_python_clean/
