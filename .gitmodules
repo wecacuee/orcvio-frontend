@@ -16,6 +16,7 @@
 [submodule "src/StarMap-xingyizhou"]
 	path = src/StarMap-xingyizhou
 	url = git@github.com:wecacuee/StarMap.git
+	branch = master
 [submodule "src/sort_ros"]
 	path = src/sort_ros
 	url = git@github.com:moshanATucsd/sort_ros.git
@@ -28,3 +29,4 @@
 [submodule "src/backend"]
 	path = src/backend
 	url = git@github.com:wecacuee/orcvio-backend.git
+	branch = master
